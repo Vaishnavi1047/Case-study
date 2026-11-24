@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  moveinsync-agent:
+    build: .
+    container_name: moveinsync_agent
+    ports:
+      - "8000:8000"
+    environment:
+      - JWT_SECRET_KEY=dev-secret-key-moveinsync-change-in-prod
+      - USE_FAKE_LLM=true
+      - SIMULATED_TIME=2026-11-24 17:30:00
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      - ./moveinsync.db:/app/moveinsync.db
+
